@@ -18,13 +18,13 @@ defmodule DistilleryPackager.Utils.Config do
   end
 
   @doc """
-  Sanitize certain elements so that they are (for example) filesystem safe.
+  Sanitize certain elements so that they are filesystem safe.
   """
   def sanitize_config(config = %{}) do
     sanitized_name =
       config.name
         |> String.downcase
-        |> String.replace(~r([^a-z\-\+\.]), "")
+        |> String.replace(~r([^a-z\-\_\.]), "")
 
     Map.put(config, :sanitized_name, sanitized_name)
   end

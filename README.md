@@ -53,7 +53,7 @@ def deb_package do
    [
       vendor: "18Months S.r.l.",
       maintainers: ["18Months <info@18months.it>"],
-      homepage: "https://github.com/18Months",
+      homepage: "https://www.18months.it",
       licenses: ["MIT"],
       external_dependencies: [],
       maintainer_scripts: [

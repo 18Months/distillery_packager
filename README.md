@@ -44,7 +44,7 @@ defmodule Testapp.Mixfile do
    end
 ```
 
-# Debian package configuration
+## Debian package configuration
 
 The `deb_package` function must be set as:
 
@@ -96,7 +96,7 @@ A list of configuration options you can add to `deb_package/0`:
    - This is used when building the archive to set the correct user and group
    - Defaults to root for user & group.
 
-# Distillery configuration
+## Distillery configuration
 
 You can build a deb by adding `plugin DistilleryPackager.Plugin` to your `rel/config.exs` file.
 

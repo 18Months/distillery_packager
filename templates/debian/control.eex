@@ -1,0 +1,14 @@
+Package: <%= sanitized_name %>
+Version: <%= version %>
+License: <%= licenses %>
+Vendor: <%= vendor %>
+Architecture: <%= arch %>
+Maintainer: <%= maintainers %>
+Installed-Size: <%= installed_size %>
+Depends: <%= external_dependencies %>
+Priority: extra
+Section: misc
+Homepage: <%= homepage %>
+Description: Automatically packaged by Distillery Packager
+  <%= version %>
+  <%= description %>

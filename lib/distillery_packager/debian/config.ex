@@ -29,9 +29,6 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :group], presence: true
 
   def build_config(release = %Mix.Releases.Release{}, options) do
-    IO.inspect options
-    IO.inspect is_map(options)
-
     base_config =
       [
         {:name, Atom.to_string(release.name)},
@@ -52,7 +49,7 @@ defmodule DistilleryPackager.Debian.Config do
       |> check_valid
   end
 
-  defp format_package_version(version, %{distribution: distribution}) do
+  defp format_package_version(version, [distribution: distribution]) do
     "#{version}~#{distribution}"
   end
   defp format_package_version(version, _), do: version

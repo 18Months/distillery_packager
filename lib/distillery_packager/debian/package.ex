@@ -3,7 +3,7 @@ defmodule DistilleryPackager.Debian.Package do
   This module is used to produce the final debian package file, using the "ar"
   compression tool.
   """
-  import Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [debug: 1]
 
   def build(dir, config) do
     debug "Building deb file"

@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Generators.Upstart do
   """
   alias DistilleryPackager.Debian.Generators.TemplateFinder
 
-  import Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [debug: 1]
 
   def build(data_dir, config) do
     debug "Building Upstart file"

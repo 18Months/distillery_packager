@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Generators.Control do
   """
   alias DistilleryPackager.Debian.Generators.TemplateFinder
 
-  import Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [debug: 1]
 
   def build(config, control_dir) do
     debug "Building Control file"

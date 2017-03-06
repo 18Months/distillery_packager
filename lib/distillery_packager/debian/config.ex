@@ -15,7 +15,7 @@ defmodule DistilleryPackager.Debian.Config do
   alias DistilleryPackager.Utils
   alias Mix.Project
 
-  import Logger, only: [debug: 1, error: 1]
+  import Mix.Releases.Logger, only: [error: 1]
 
   # This version number format should be able to handle regular version
   # numbers as well as alpha/beta versions
@@ -32,12 +32,11 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :user], presence: true
   validates [:owner, :group], presence: true
 
-  def build_config(release = %Mix.Releases.Release{}) do
-    debug IO.inspect(release)
+  def build_config(release = %Mix.Releases.Release{}, options) do
     base_config =
       [
         {:name, Atom.to_string(release.name)},
-        {:version, "#{release.version}~#{release.environment}"},
+        {:version, format_package_version(release.version, options)},
         {:arch, Utils.Config.detect_arch},
         {:description, Project.config[:description]}
       ] ++ config_from_package(Project.config[:deb_package])
@@ -53,6 +52,11 @@ defmodule DistilleryPackager.Debian.Config do
       |> DistilleryPackager.Utils.Config.sanitize_config
       |> check_valid
   end
+
+  defp format_package_version(version, %{distribution: distribution}) do
+    "#{version}~#{distribution}"
+  end
+  defp format_package_version(version, _), do: version
 
   defp config_from_package(nil) do
     """

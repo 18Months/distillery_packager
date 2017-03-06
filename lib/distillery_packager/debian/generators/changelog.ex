@@ -6,7 +6,7 @@ defmodule DistilleryPackager.Debian.Generators.Changelog do
   alias DistilleryPackager.Debian.Generators.TemplateFinder
   alias DistilleryPackager.Utils.Compression
 
-  import Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [debug: 1]
 
   def build(data_dir, config) do
     debug "Building Changelog file"

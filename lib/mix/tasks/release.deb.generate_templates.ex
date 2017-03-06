@@ -10,7 +10,7 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
 
   use Mix.Task
 
-  require Logger
+  import Mix.Releases.Logger
 
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
   end
 
   def copy_templates(dest \\ destination_dir()) do
-    Logger.info "Copying templates to ./rel/distillery_packager/debian/templates"
+    info "Copying templates to ./rel/distillery_packager/debian/templates"
     {:ok, _} =
       [ConfigUtil.root, "templates"]
         |> Path.join
@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
   end
 
   defp make_dest_dir do
-    Logger.info "Making ./rel/distillery_packager/debian/templates directory"
+    info "Making ./rel/distillery_packager/debian/templates directory"
     :ok =
       destination_dir()
         |> File.mkdir_p

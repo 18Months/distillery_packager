@@ -2,7 +2,7 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
   @moduledoc """
   This module decides whether to use a custom template or to use the default.
   """
-  import Logger, only: [debug: 1, info: 1]
+  import Mix.Releases.Logger, only: [debug: 1, info: 1]
 
   def retrieve(pathname) do
     path = user_provided_path(pathname)

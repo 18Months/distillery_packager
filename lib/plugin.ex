@@ -8,9 +8,9 @@ defmodule DistilleryPackager.Plugin do
   alias DistilleryPackager.Debian.Config
 
   def before_assembly(release, _options), do: release
-  def after_assembly(release = %Release{}, _options) do
+  def after_assembly(release = %Release{}, options) do
     info "Building Deb Package"
-    case Config.build_config(release) do
+    case Config.build_config(release, options) do
       {:ok, config} ->
         DistilleryPackager.start_build(config)
         release

@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Generators.Systemd do
   """
   alias DistilleryPackager.Debian.Generators.TemplateFinder
 
-  import Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [debug: 1]
 
   def build(data_dir, config) do
     debug "Building Systemd Service File"

@@ -15,7 +15,7 @@ defmodule DistilleryPackager.Debian.Config do
   alias DistilleryPackager.Utils
   alias Mix.Project
 
-  import Logger, only: [error: 1]
+  import Logger, only: [debug: 1, error: 1]
 
   # This version number format should be able to handle regular version
   # numbers as well as alpha/beta versions
@@ -33,7 +33,7 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :group], presence: true
 
   def build_config(release = %Mix.Releases.Release{}) do
-    info IO.inspect(release)
+    debug IO.inspect(release)
     base_config =
       [
         {:name, Atom.to_string(release.name)},

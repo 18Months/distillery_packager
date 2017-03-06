@@ -17,12 +17,8 @@ defmodule DistilleryPackager.Debian.Config do
 
   import Mix.Releases.Logger, only: [error: 1]
 
-  # This version number format should be able to handle regular version
-  # numbers as well as alpha/beta versions
-  @version_number_format ~r/([0-9]+)\.([0-9]+)\.([0-9]+)\-?([a-z[0-9]*)/
-
   validates :name, presence: true
-  validates :version, presence: true, format: @version_number_format
+  validates :version, presence: true
   validates :arch, presence: true
   validates :description, presence: true
   validates :vendor, presence: true
@@ -33,6 +29,9 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :group], presence: true
 
   def build_config(release = %Mix.Releases.Release{}, options) do
+    IO.inspect options
+    IO.inspect is_map(options)
+
     base_config =
       [
         {:name, Atom.to_string(release.name)},

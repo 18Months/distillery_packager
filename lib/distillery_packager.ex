@@ -9,7 +9,7 @@ defmodule DistilleryPackager do
 
   def start_build(config) do
     DistilleryPackager.remove_deb_dir
-    deb_root = initialize_dir()
+    deb_root = initialize_deb_dir()
 
     {:ok, config} = Data.build(deb_root, config)
     :ok = Control.build(deb_root, config)
@@ -25,7 +25,7 @@ defmodule DistilleryPackager do
       |> File.rm_rf
   end
 
-  defp initialize_dir do
+  defp initialize_deb_dir do
     deb_root = Path.join([Project.build_path, "deb"])
 
     debug("Building base debian directory")

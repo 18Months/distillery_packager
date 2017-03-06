@@ -33,10 +33,11 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :group], presence: true
 
   def build_config(release = %Mix.Releases.Release{}) do
+    info IO.inspect(release)
     base_config =
       [
         {:name, Atom.to_string(release.name)},
-        {:version, release.version},
+        {:version, "#{release.version}~#{release.environment}"},
         {:arch, Utils.Config.detect_arch},
         {:description, Project.config[:description]}
       ] ++ config_from_package(Project.config[:deb_package])

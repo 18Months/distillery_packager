@@ -10,7 +10,7 @@ defmodule DistilleryPackager.Debian.Generators.Sysvinit do
     debug "Building Sysvinit File"
 
     systemd_script =
-      ["init_scripts", "sysvinit.service.eex"]
+      ["init_scripts", "sysvinit.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
             description: config.description,

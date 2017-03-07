@@ -3,8 +3,8 @@ defmodule DistilleryPackager.Mixfile do
 
   def project do
     [app: :distillery_packager,
-     version: "0.1.7",
-     elixir: "~> 1.4",
+     version: "0.1.8",
+     elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
@@ -13,9 +13,14 @@ defmodule DistilleryPackager.Mixfile do
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
-  def application do
-    # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+  def application, do: [applications: apps(Mix.env)]
+
+  defp apps(:test) do
+    apps(:all) ++ [:faker]
+  end
+
+  defp apps(_) do
+    [:logger, :exrm, :timex, :vex]
   end
 
   # Dependencies can be Hex packages:

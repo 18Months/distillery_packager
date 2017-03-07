@@ -16,8 +16,8 @@ Environment=HOME=/home/<%= uid %>
 
 WorkingDirectory=/opt/<%= name %>
 
-ExecStart= /opt/<%= name %>/bin/<%= name %> start
-ExecStop= /opt/<%= name %>/bin/<%= name %> stop
+ExecStart=/opt/<%= name %>/bin/<%= name %> start
+ExecStop=/opt/<%= name %>/bin/<%= name %> stop
 
 Restart=on-failure
 RemainAfterExit=yes

@@ -13,10 +13,10 @@ defmodule DistilleryPackager.Debian.Generators.Systemd do
       ["init_scripts", "systemd.service.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
-          description: config.description,
-          name: config.name,
-          uid: config.owner[:user],
-          gid: config.owner[:group]
+            description: config.description,
+            name: config.name,
+            uid: config.owner[:user],
+            gid: config.owner[:group]
         ])
 
     out_dir =

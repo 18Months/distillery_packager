@@ -15,8 +15,8 @@ defmodule DistilleryPackager do
     :ok = Control.build(deb_root, config)
     :ok = Package.build(deb_root, config)
 
-    info("A debian package has successfully been created." <>
-         "You can find it in the ./rel directory")
+    info("A debian package has been created " <>
+         "in #{deb_root}/#{config.name}-#{config.version}_#{config.arch}.deb")
   end
 
   def remove_deb_dir do

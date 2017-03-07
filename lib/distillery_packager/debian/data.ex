@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Data do
   debian package.
   """
   alias DistilleryPackager.Utils.Compression
-  alias DistilleryPackager.Debian.Generators.{Changelog, Upstart, Systemd}
+  alias DistilleryPackager.Debian.Generators.{Changelog, Upstart, Systemd, Sysvinit}
   alias Mix.Project
 
   import Mix.Releases.Logger, only: [debug: 1]
@@ -17,6 +17,7 @@ defmodule DistilleryPackager.Debian.Data do
     Changelog.build(data_dir, config)
     Upstart.build(data_dir, config)
     Systemd.build(data_dir, config)
+    Sysvinit.build(data_dir, config)
 
     config = Map.put_new(
       config,

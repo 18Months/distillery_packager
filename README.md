@@ -100,7 +100,19 @@ A list of configuration options you can add to `deb_package/0`:
 
 You can build a deb by adding `plugin DistilleryPackager.Plugin` to your `rel/config.exs` file.
 
+You can also specify target distribution with `plugin DistilleryPackager.Plugin, distribution: "xenial"`
+
 The name and version is taken from the `rel/config.exs` file.
+
+## Installation
+
+The package can be installed as:
+
+  1. Add distillery_packager to your list of dependencies in `mix.exs`:
+
+        def deps do
+          [{:distillery_packager, "~> 0.1"}]
+        end
 
 ## Usage
 
@@ -112,16 +124,9 @@ You can customise the debs that are being built by copying the template files us
 mix release.deb.generate_templates
 ```
 
-When you next run `mix release`, your custom templates will be used instead of the defaults inside the plugin.
+### Build
 
-## Installation
+Packages are build with `mix release` command.
 
-The package can be installed as:
-
-  1. Add distillery_packager to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:distillery_packager, "~> 0.1.0"}]
-        end
 
 [1]:https://www.debian.org/doc/manuals/maint-guide/dreq.en.html#control

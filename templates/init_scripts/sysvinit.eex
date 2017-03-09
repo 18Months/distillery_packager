@@ -97,3 +97,4 @@ stop)    do_stop;    exit $? ;;
 restart) do_restart; exit $? ;;
 status)  do_status;  exit $? ;;
 *)       do_usage;   exit  1 ;;
+esac

@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
   def run(_args) do
-    make_dest_dir()
+    make_dirs()
     copy_templates()
   end
 
@@ -30,15 +30,25 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
         end)
   end
 
-  defp make_dest_dir do
+  defp make_dirs do
     info "Making ./rel/distillery_packager/debian/templates directory"
     :ok =
       destination_dir()
+        |> File.mkdir_p
+
+    info "Making ./rel/distillery_packager/debian/additional_files directory"
+    :ok =
+      additional_files_dir()
         |> File.mkdir_p
   end
 
   defp destination_dir do
     [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "templates"]
+      |> Path.join
+  end
+
+  defp additional_files_dir do
+    [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "additional_files"]
       |> Path.join
   end
 

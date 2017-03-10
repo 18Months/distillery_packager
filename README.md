@@ -63,8 +63,8 @@ def deb_package do
          pre_uninstall: "rel/distillery_packager/debian/install_scripts/pre_uninstall.sh"
       ]
       config_files: ["/etc/init/.conf"],
-      additional_files: [{"rel/distillery_packager/debian/config1", "etc/distillery_packager/config/"},
-                         {"rel/distillery_packager/debian/config2", "etc/distillery_packager/config/"}]
+      additional_files: [{"configs/config1", "etc/distillery_packager/config/"},
+                         {"configs/config2", "etc/distillery_packager/config/"}]
       owner: [user: "root", group: "root"]
    ]
 end
@@ -96,7 +96,7 @@ A list of configuration options you can add to `deb_package/0`:
    - Should contain the absolute path of the config file to be overwritten.
  - `additional_files`
    - List of Tuples
-   - Should contain the relative path of the source file to copy in the first position of the tuple
+   - Should contain the relative path of the source file to copy in the first position of the tuple. Path is relative to rel/distillery_packager/additional_files. It is mandatory to create this path, if you want to use this feature.
    - Should contain the absolute path of the destination folder, where copy the file, in the second position of the tuple
  - `owner`
    - A keyword list of Strings

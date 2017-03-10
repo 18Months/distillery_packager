@@ -63,8 +63,7 @@ def deb_package do
          pre_uninstall: "rel/distillery_packager/debian/install_scripts/pre_uninstall.sh"
       ]
       config_files: ["/etc/init/.conf"],
-      additional_files: [{"configs/config1", "etc/distillery_packager/config/"},
-                         {"configs/config2", "etc/distillery_packager/config/"}]
+      additional_files: [{"configs", "etc/distillery_packager/configs"}]
       owner: [user: "root", group: "root"]
    ]
 end

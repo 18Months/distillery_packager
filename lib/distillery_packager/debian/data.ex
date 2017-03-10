@@ -65,11 +65,13 @@ defmodule DistilleryPackager.Debian.Data do
 
   def copy_additional_files(data_dir, [{src, dst} | tail]) do
     rel_dst = Path.join(data_dir, Path.relative(dst))
-    rel_src = src_path(src)
 
-    :ok = File.mkdir_p(rel_dst)
+    case File.mkdir_p(rel_dst) do
+      :ok -> info("Created #{dst} directory for additional files")
+      _ -> nil
+    end
 
-    case File.cp_r(rel_src, rel_dst) do
+    case File.cp_r(src, rel_dst) do
       {:ok, _} -> info("Copied #{src} into #{dst} directory")
       _ -> error("Copy #{src} into #{dst} directory failed")
     end
@@ -80,7 +82,7 @@ defmodule DistilleryPackager.Debian.Data do
     error("Copy of a file in the additional file list has been skipped, invalid convention format")
     copy_additional_files(data_dir, tail)
   end
-  def copy_additional_files(_, []), do: nil
+  def copy_additional_files(_, _), do: nil
 
   defp src_path(config) do
     Path.join([Project.build_path, "rel", config.name])

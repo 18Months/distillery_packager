@@ -12,7 +12,7 @@ defmodule DistilleryPackager.Debian.Data do
   def build(dir, config) do
     data_dir = make_data_dir(dir, config)
     copy_release(data_dir, config)
-    copy_additional_files(data_dir, config.config_files)
+    copy_additional_files(data_dir, config.additional_files)
     remove_targz_file(data_dir, config)
     DistilleryPackager.Utils.File.remove_fs_metadata(data_dir)
     Changelog.build(data_dir, config)

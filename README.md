@@ -96,8 +96,10 @@ A list of configuration options you can add to `deb_package/0`:
    - Should contain the absolute path of the config file to be overwritten.
  - `additional_files`
    - List of Tuples
-   - Should contain the relative path of the source file to copy in the first position of the tuple. Path is relative to rel/distillery_packager/additional_files. It is mandatory to create this path, if you want to use this feature.
-   - Should contain the absolute path of the destination folder, where copy the file, in the second position of the tuple
+   - Should contain the relative path of the source folder in the first position of the tuple. Path is relative to rel/distillery_packager/additional_files.
+     All files present in the source path will be copied to the destination folder.
+     It is mandatory to create this path, if you want to use this feature. Note that this path is created also with template generator task.
+   - Should contain the absolute path of the destination folder, where to copy the content of the source folder, in the second position of the tuple.
  - `owner`
    - A keyword list of Strings
    - If set, requires both `user` and `group` keys to be set.

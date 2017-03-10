@@ -66,10 +66,9 @@ defmodule DistilleryPackager.Debian.Data do
   def copy_additional_files(data_dir, [{src, dst} | tail]) do
     rel_dst = Path.join(data_dir, Path.relative(dst))
       |> File.mkdir_p
-
     rel_src = src_path(src)
-    
-    case File.cp_r(src, rel_dst) do
+
+    case File.cp_r(rel_src, rel_dst) do
       {:ok, _} -> info("Copied #{src} into #{dst} directory")
       _ -> error("Copy #{src} into #{dst} directory failed")
     end

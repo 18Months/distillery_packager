@@ -71,13 +71,13 @@ defmodule DistilleryPackager.Debian.Data do
         ] |> List.flatten |> Path.join
 
     case File.mkdir_p(rel_dst) do
-      :ok -> info("Created #{dst} directory for additional files")
+      :ok -> info("Created #{rel_dst} directory for additional files")
       _ -> nil
     end
 
     case File.cp_r(rel_src, rel_dst) do
-      {:ok, _} -> info("Copied #{src} into #{dst} directory")
-      _ -> error("Copy #{src} into #{dst} directory failed")
+      {:ok, _} -> info("Copied #{rel_src} into #{rel_dst} directory")
+      _ -> error("Copy #{rel_src} into #{rel_dst} directory failed")
     end
 
     copy_additional_files(data_dir, tail)

@@ -10,7 +10,8 @@ Elixir lib for creating linux packages with Distillery.
  2. [x] Ability to add in pre/post install/remove scripts
  3. [x] Validates configuration before completing the build
  4. [x] Ability for you to replace file templates with your own
- 5. [x] Automatically builds init scripts:
+ 5. [x] Ability to manage additional files for package 
+ 6. [x] Automatically builds init scripts:
      1. [x] Systemd
      2. [x] Upstart
      3. [x] SysVinit
@@ -57,10 +58,13 @@ def deb_package do
       licenses: ["MIT"],
       external_dependencies: [],
       maintainer_scripts: [
-        pre_install: "/pre_install",
-        post_install: "/post_install"
-      ],
-      config_files: ["/etc/init/api.conf"],
+         pre_install: "rel/distillery_packager/debian/install_scripts/pre_install.sh",
+         post_install: "rel/distillery_packager/debian/install_scripts/post_install.sh",
+         pre_uninstall: "rel/distillery_packager/debian/install_scripts/pre_uninstall.sh"
+      ]
+      config_files: ["/etc/init/.conf"],
+      additional_files: [{"rel/distillery_packager/debian/config1", "etc/distillery_packager/config1"},
+                         {"rel/distillery_packager/debian/config2", "etc/distillery_packager/config2"}]
       owner: [user: "root", group: "root"]
    ]
 end
@@ -90,6 +94,10 @@ A list of configuration options you can add to `deb_package/0`:
  - `config_file`
    - Array of Strings
    - Should contain the absolute path of the config file to be overwritten.
+ - `additional_files`
+   - List of Tuples
+   - Should contain the relative path of the source file to copy in the first position of the tuple
+   - Should contain the absolute path of the destination file to copy in the second position of the tuple
  - `owner`
    - A keyword list of Strings
    - If set, requires both `user` and `group` keys to be set.
@@ -111,7 +119,7 @@ The package can be installed as:
   1. Add distillery_packager to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:distillery_packager, "~> 0.1"}]
+          [{:distillery_packager, "~> 0.3"}]
         end
 
 ## Usage

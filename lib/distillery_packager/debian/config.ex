@@ -8,7 +8,7 @@ defmodule DistilleryPackager.Debian.Config do
   defstruct name: nil, version: nil, arch: nil, description: nil, vendor: nil,
             maintainers: nil, homepage: nil, licenses: nil,
             external_dependencies: nil, maintainer_scripts: [],
-            config_files: [], owner: [user: "root", group: "root"]
+            config_files: [], additional_files: [], owner: [user: "root", group: "root"]
 
   use Vex.Struct
 
@@ -77,6 +77,9 @@ defmodule DistilleryPackager.Debian.Config do
   end
   defp handle_config(:config_files, value) do
     {:config_files, value}
+  end
+  defp handle_config(:additional_files, value) do
+    {:additional_files, value}
   end
   defp handle_config(:maintainer_scripts, [_ | _] = value) do
     {:maintainer_scripts, value}

@@ -7,11 +7,12 @@ defmodule DistilleryPackager.Debian.Data do
   alias DistilleryPackager.Debian.Generators.{Changelog, Upstart, Systemd, Sysvinit}
   alias Mix.Project
 
-  import Mix.Releases.Logger, only: [debug: 1]
+  import Mix.Releases.Logger, only: [info: 1, debug: 1, error: 1]
 
   def build(dir, config) do
     data_dir = make_data_dir(dir, config)
     copy_release(data_dir, config)
+    copy_additional_files(data_dir, config.config_files)
     remove_targz_file(data_dir, config)
     DistilleryPackager.Utils.File.remove_fs_metadata(data_dir)
     Changelog.build(data_dir, config)
@@ -61,6 +62,22 @@ defmodule DistilleryPackager.Debian.Data do
 
     dest
   end
+
+  def copy_additional_files(data_dir, [{src, dst} | tail]) do
+    rel_dst = Path.join(data_dir, Path.relative(dst))
+
+    case File.cp_r(src, rel_dst) do
+      {:ok, _} -> info("Copied #{src} into #{dst} directory")
+      _ -> error("Copy #{src} into #{dst} directory failed")
+    end
+
+    copy_additional_files(data_dir, tail)
+  end
+  def copy_additional_files(data_dir, [_ | tail]) do
+    error("Copy of a file in the additional file list has been skipped, invalid convention format")
+    copy_additional_files(data_dir, tail)
+  end
+  def copy_additional_files(_, []), do: nil
 
   defp src_path(config) do
     Path.join([Project.build_path, "rel", config.name])

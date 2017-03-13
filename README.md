@@ -2,16 +2,15 @@
 
 Elixir lib for creating linux packages with Distillery.
 
-## Functionalities
+## Features
 
- 1. [x] Able to build debian packages:
+ 1. [x] Able to build debian packages
      1. [x] With changelog
      2. [x] With control file
- 2. [x] Ability to add in pre/post install/remove scripts
- 3. [x] Validates configuration before completing the build
- 4. [x] Ability for you to replace file templates with your own
- 5. [x] Ability to manage additional files for package
- 6. [x] Automatically builds init scripts:
+     3. [x] With customizable pre/post install/remove scripts
+     4. [x] With capability to add custom files/scripts to the package
+ 2. [ ] Able to build RPM packages
+ 3. [x] Automatically builds init scripts, which are all customizable, for:
      1. [x] Systemd
      2. [x] Upstart
      3. [x] SysVinit
@@ -63,7 +62,7 @@ def deb_package do
          pre_uninstall: "rel/distillery_packager/debian/install_scripts/pre_uninstall.sh"
       ]
       config_files: ["/etc/init/.conf"],
-      additional_files: [{"configs", "etc/distillery_packager/configs"}]
+      additional_files: [{"configs", "/etc/distillery_packager/configs"}]
       owner: [user: "root", group: "root"]
    ]
 end
@@ -95,10 +94,10 @@ A list of configuration options you can add to `deb_package/0`:
    - Should contain the absolute path of the config file to be overwritten.
  - `additional_files`
    - List of Tuples
-   - Should contain the relative path of the source folder in the first position of the tuple. Path is relative to rel/distillery_packager/additional_files.
+   - Should contain the relative path of the source folder in the first position of the tuple. Path root is set to rel/distillery_packager/additional_files in your project.
      All files present in the source path will be copied to the destination folder.
-     It is mandatory to create this path, if you want to use this feature. Note that this path is created also with template generator task.
-   - Should contain the absolute path of the destination folder, where to copy the content of the source folder, in the second position of the tuple.
+     It is mandatory to create the root path rel/distillery_packager/additional_files in your project, if you want to use this feature. Note that this path is created also with template generator task.
+   - Should contain the path of the destination folder, relative to the target system where the package will be installed, in the second position of the tuple.
  - `owner`
    - A keyword list of Strings
    - If set, requires both `user` and `group` keys to be set.

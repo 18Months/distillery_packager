@@ -7,6 +7,8 @@ defmodule DistilleryPackager.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
@@ -35,5 +37,20 @@ defmodule DistilleryPackager.Mixfile do
       {:credo,      "~> 0.6", only: [:dev, :test], runtime: false},
       {:dogma,      "~> 0.1", only: [:dev, :test], runtime: false}
     ]
+  end
+
+  defp description do
+    """
+    Elixir lib for creating Debian and RPM packages with Distillery.
+    """
+  end
+
+  defp package do
+    [name: :distillery_packager,
+     files: ["lib", "mix.exs", "README*", "LICENSE*", "templates"],
+     maintainers: ["18Months Dev Team <info@18months.it>"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/18Months/distillery_packager",
+              "Docs" => "https://github.com/18Months/distillery_packager/blob/master/README.md"}]
   end
 end

@@ -34,6 +34,7 @@ defmodule DistilleryPackager.Mixfile do
       {:distillery, "~> 1.2"},
       {:vex,        "~> 0.5"},
       {:timex,      "~> 3.0"},
+      {:ex_doc,     ">= 0.0.0", only: :dev},
       {:credo,      "~> 0.6", only: [:dev, :test], runtime: false},
       {:dogma,      "~> 0.1", only: [:dev, :test], runtime: false}
     ]

@@ -1,6 +1,6 @@
 defmodule DistilleryPackager.Debian.Generators.Sysvinit do
   @moduledoc """
-  This module produces a systemd unit file from the config and a template.
+  This module produces a sysvinit file from the config and a template.
   """
   alias DistilleryPackager.Debian.Generators.TemplateFinder
 

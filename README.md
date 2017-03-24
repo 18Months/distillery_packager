@@ -1,10 +1,10 @@
 # Distillery Packager
 
-Elixir lib for creating linux packages with Distillery.
+Elixir lib for creating Debian and RPM packages with Distillery.
 
 ## Features
 
- 1. [x] Able to build debian packages
+ 1. [x] Able to build Debian packages
      1. [x] With changelog
      2. [x] With control file
      3. [x] With customizable pre/post install/remove scripts
@@ -135,6 +135,5 @@ mix release.deb.generate_templates
 ### Build
 
 Packages are build with `mix release` command.
-
 
 [1]:https://www.debian.org/doc/manuals/maint-guide/dreq.en.html#control

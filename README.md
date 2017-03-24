@@ -94,9 +94,13 @@ A list of configuration options you can add to `deb_package/0`:
    - Should contain the absolute path of the config file to be overwritten.
  - `additional_files`
    - List of Tuples
-   - Should contain the relative path of the source folder in the first position of the tuple. Path root is set to rel/distillery_packager/additional_files in your project.
-     All files present in the source path will be copied to the destination folder.
-     It is mandatory to create the root path rel/distillery_packager/additional_files in your project, if you want to use this feature. Note that this path is created also with template generator task.
+   - Should contain the relative path of the source folder in the first position of the tuple.
+     All files present in the source folder will be copied to the destination folder.
+     You can use the task
+     ```bash
+     mix release.deb.prepare_base_path
+     ```
+     to create root directory where to put your file or folders.
    - Should contain the path of the destination folder, relative to the target system where the package will be installed, in the second position of the tuple.
  - `owner`
    - A keyword list of Strings
@@ -119,7 +123,7 @@ The package can be installed as:
   1. Add distillery_packager to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:distillery_packager, "~> 0.3"}]
+          [{:distillery_packager, "~> 0.4"}]
         end
 
 ## Usage

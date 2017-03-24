@@ -1,11 +1,4 @@
 defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
-  @moduledoc """
-  Copy Template files into project source directory so that
-  users can modify them for their own purposes.
-
-  ## Examples
-  mix release.deb.generate_templates
-  """
   @shortdoc "Copy debian template files into ./rel/distillery_packager/debian/templates"
 
   use Mix.Task
@@ -35,20 +28,10 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
     :ok =
       destination_dir()
         |> File.mkdir_p
-
-    info "Making ./rel/distillery_packager/debian/additional_files directory"
-    :ok =
-      additional_files_dir()
-        |> File.mkdir_p
   end
 
   defp destination_dir do
     [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "templates"]
-      |> Path.join
-  end
-
-  defp additional_files_dir do
-    [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "additional_files"]
       |> Path.join
   end
 

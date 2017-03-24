@@ -100,7 +100,7 @@ A list of configuration options you can add to `deb_package/0`:
      ```bash
      mix release.deb.prepare_base_path
      ```
-     to create root directory where to put your file or folders.
+     to create root directory where to put your files or folders.
    - Should contain the path of the destination folder, relative to the target system where the package will be installed, in the second position of the tuple.
  - `owner`
    - A keyword list of Strings

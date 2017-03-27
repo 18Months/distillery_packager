@@ -7,5 +7,4 @@ defmodule DistilleryPackagerTest.ConfigTest do
 
     assert Map.fetch!(out, :sanitized_name) == "jim-bo.b"
   end
-
 end

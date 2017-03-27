@@ -1,4 +1,4 @@
-defmodule DistilleryPackagerTest.GenerateTemplatesTest do
+defmodule DistilleryPackagerTest.TasksTest do
   use ExUnit.Case
 
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
@@ -12,29 +12,27 @@ defmodule DistilleryPackagerTest.GenerateTemplatesTest do
     on_exit fn ->
       File.rm_rf!(dest)
     end
+
+    {:ok, dest: dest}
   end
 
-  test "Check that mix task creates correct base path directories" do
-    dest = [ConfigUtil.root, "rel"] |> Path.join
-
-    assert [dest, "distillery_packager", "debian", "additional_files"]
+  test "Check that mix task creates correct base path directories", config do
+    assert [config.dest, "distillery_packager", "debian", "additional_files"]
             |> Path.join |> File.exists?
   end
 
-  test "Check that mix task copies over the config to the correct dir" do
-    dest = [ConfigUtil.root, "rel"] |> Path.join
-
-    assert [dest, "distillery_packager", "debian", "templates", "changelog.eex"]
+  test "Check that mix task copies over the config to the correct dir", config do
+    assert [config.dest, "distillery_packager", "debian", "templates", "changelog.eex"]
             |> Path.join |> File.exists?
-    assert [dest, "distillery_packager", "debian", "templates", "control.eex"]
+    assert [config.dest, "distillery_packager", "debian", "templates", "control.eex"]
             |> Path.join |> File.exists?
 
-    assert [dest, "distillery_packager", "debian", "templates",
+    assert [config.dest, "distillery_packager", "debian", "templates",
             "init_scripts", "systemd.service.eex"]
             |> Path.join
             |> File.exists?
 
-    assert [dest, "distillery_packager", "debian", "templates",
+    assert [config.dest, "distillery_packager", "debian", "templates",
             "init_scripts", "upstart.conf.eex"]
             |> Path.join
             |> File.exists?

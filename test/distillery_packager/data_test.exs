@@ -1,5 +1,5 @@
 defmodule DistilleryPackagerTest.DataTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   setup do
     {:ok, test_dir} =
@@ -62,6 +62,7 @@ defmodule DistilleryPackagerTest.DataTest do
       "tar",
       ["-zxvf", data_pkg],
       stderr_to_stdout: true)
+
     assert true = File.exists? dest_test_file
     assert true = File.exists? changelog
   end

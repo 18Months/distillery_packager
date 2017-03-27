@@ -1,5 +1,5 @@
 defmodule DistilleryPackagerTest.ConfigTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   test "Configuration is sanitized correctly" do
     out = %{ name: "$!JIM-B+O.B,'" }

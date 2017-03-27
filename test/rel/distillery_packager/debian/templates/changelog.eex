@@ -1,5 +1,0 @@
-<%= sanitized_name %> (<%= version %>); urgency=medium
-
-  * First release
-
- -- <%= maintainers %> <%= time %>

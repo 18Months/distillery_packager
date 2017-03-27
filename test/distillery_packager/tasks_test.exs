@@ -21,20 +21,21 @@ defmodule DistilleryPackagerTest.TasksTest do
             |> Path.join |> File.exists?
   end
 
-  test "Check that mix task copies over the config to the correct dir", config do
-    assert [config.dest, "distillery_packager", "debian", "templates", "changelog.eex"]
-            |> Path.join |> File.exists?
-    assert [config.dest, "distillery_packager", "debian", "templates", "control.eex"]
+  test "Check that mix task copies over the config", config do
+    assert [config.dest, "distillery_packager", "debian",
+            "templates", "changelog.eex"]
             |> Path.join |> File.exists?
 
-    assert [config.dest, "distillery_packager", "debian", "templates",
-            "init_scripts", "systemd.service.eex"]
-            |> Path.join
-            |> File.exists?
+    assert [config.dest, "distillery_packager", "debian",
+            "templates", "control.eex"]
+            |> Path.join |> File.exists?
 
-    assert [config.dest, "distillery_packager", "debian", "templates",
-            "init_scripts", "upstart.conf.eex"]
-            |> Path.join
-            |> File.exists?
+    assert [config.dest, "distillery_packager", "debian",
+            "templates", "init_scripts", "systemd.service.eex"]
+            |> Path.join |> File.exists?
+
+    assert [config.dest, "distillery_packager", "debian",
+            "templates", "init_scripts", "upstart.conf.eex"]
+            |> Path.join |> File.exists?
   end
 end

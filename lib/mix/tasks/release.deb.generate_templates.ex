@@ -1,5 +1,8 @@
 defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
-  @shortdoc "Copy debian template files into ./rel/distillery_packager/debian/templates"
+  @moduledoc """
+  This module provides a task for copy debian template files into
+  ./rel/distillery_packager/debian/templates
+  """
 
   use Mix.Task
 
@@ -34,5 +37,4 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
     [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "templates"]
       |> Path.join
   end
-
 end

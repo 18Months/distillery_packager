@@ -40,5 +40,4 @@ defmodule DistilleryPackager.Utils.Compression do
       env: [{"GZIP", "-9"}]
     )
   end
-
 end

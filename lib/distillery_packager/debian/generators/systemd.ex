@@ -30,5 +30,4 @@ defmodule DistilleryPackager.Debian.Generators.Systemd do
         |> Path.join
         |> File.write(systemd_script)
   end
-
 end

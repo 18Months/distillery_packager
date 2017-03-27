@@ -23,6 +23,14 @@ Before using distillery_packager, you'll need the following packages installed a
  - `ar`
  - `uname`
 
+## Installation
+
+Add distillery_packager to your list of dependencies in `mix.exs`:
+
+  def deps do
+   [{:distillery_packager, "~> 0.4"}]
+  end
+
 ## General configuration
 
 Distillery_packager relies on the following data in the `mix.exs` file being set:
@@ -44,7 +52,7 @@ defmodule Testapp.Mixfile do
    end
 ```
 
-## Debian package configuration
+### Debian package configuration
 
 The `deb_package` function must be set as:
 
@@ -96,12 +104,9 @@ A list of configuration options you can add to `deb_package/0`:
    - List of Tuples
    - Should contain the relative path of the source folder in the first position of the tuple.
      All files present in the source folder will be copied to the destination folder.
-     You can use the task
-     ```bash
-     mix release.deb.prepare_base_path
-     ```
-     to create root directory where to put your files or folders.
    - Should contain the path of the destination folder, relative to the target system where the package will be installed, in the second position of the tuple.
+   - Source path here should be specified excluding the base path "rel/distillery_packager/debian/additional_files" in your project.
+     A dedicated generator can be used to setup base path, for further details refer to the section below.
  - `owner`
    - A keyword list of Strings
    - If set, requires both `user` and `group` keys to be set.
@@ -116,17 +121,15 @@ You can also specify target distribution with `plugin DistilleryPackager.Plugin,
 
 The name and version is taken from the `rel/config.exs` file.
 
-## Installation
-
-The package can be installed as:
-
-  1. Add distillery_packager to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:distillery_packager, "~> 0.4"}]
-        end
-
 ## Usage
+
+### Base path
+
+You can generate the base path for additional files to be added to the package with:
+
+```bash
+mix release.deb.prepare_base_path
+```
 
 ### Customising deb config files
 
@@ -138,6 +141,6 @@ mix release.deb.generate_templates
 
 ### Build
 
-Packages are build with `mix release` command.
+Packages are build with the `mix release` command built in Distillery.
 
 [1]:https://www.debian.org/doc/manuals/maint-guide/dreq.en.html#control

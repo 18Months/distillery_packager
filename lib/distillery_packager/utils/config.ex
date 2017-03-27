@@ -47,9 +47,9 @@ defmodule DistilleryPackager.Utils.Config do
   Get the path to a file located in the rel directory of the current project.
   You can pass either a file name, or a list of directories to a file.
   """
-  def rel_dest_path(files) when is_list(files), do: Path.join([rel_dest_path()] ++ files)
-  def rel_dest_path(file),                      do: Path.join(rel_dest_path(), file)
-  @doc "Get the rel path of the current project."
-  def rel_dest_path,                            do: Path.join(File.cwd!, "rel")
-
+  def rel_dest_path(files) when is_list(files),
+      do: Path.join([rel_dest_path()] ++ files)
+  def rel_dest_path(file),
+      do: Path.join(rel_dest_path(), file)
+  def rel_dest_path, do: Path.join(File.cwd!, "rel")
 end

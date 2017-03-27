@@ -3,13 +3,15 @@ defmodule DistilleryPackager.Debian.Package do
   This module is used to produce the final debian package file, using the "ar"
   compression tool.
   """
+  alias DistilleryPackager.Utils.Config, as: ConfigUtil
+
   import Mix.Releases.Logger, only: [debug: 1]
 
   def build(dir, config) do
     debug "Building deb file"
 
     out = Path.join([
-      DistilleryPackager.Utils.Config.rel_dest_path,
+      ConfigUtil.rel_dest_path,
       "#{config.sanitized_name}-#{config.version}_#{config.arch}.deb"
     ])
 
@@ -27,5 +29,4 @@ defmodule DistilleryPackager.Debian.Package do
 
     :ok
   end
-
 end

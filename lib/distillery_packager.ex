@@ -36,5 +36,4 @@ defmodule DistilleryPackager do
 
     deb_root
   end
-
 end

@@ -10,7 +10,7 @@ defmodule DistilleryPackager.Debian.Generators.Control do
     debug "Building Control file"
 
     out =
-      "control.eex"
+      ["debian", "control.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
           description: config.description,
@@ -27,5 +27,4 @@ defmodule DistilleryPackager.Debian.Generators.Control do
 
     :ok = File.write(Path.join([control_dir, "control"]), out)
   end
-
 end

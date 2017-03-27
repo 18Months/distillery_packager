@@ -1,0 +1,15 @@
+language: elixir
+elixir:
+  - 1.4.2
+otp_release:
+  - 18.2.2
+
+script:
+  - MIX_ENV=test mix deps.get
+  - MIX_ENV=test mix test
+  - MIX_ENV=test mix dogma
+  - MIX_ENV=test mix credo --strict
+after_script:
+  - MIX_ENV=test mix coveralls.travis
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report

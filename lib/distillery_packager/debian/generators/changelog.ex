@@ -16,7 +16,7 @@ defmodule DistilleryPackager.Debian.Generators.Changelog do
         |> Timex.format("%a, %d %b %Y %H:%M:%S GMT", :strftime)
 
     changelog =
-      "changelog.eex"
+      ["debian", "changelog.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
           sanitized_name: config.sanitized_name,
@@ -46,5 +46,4 @@ defmodule DistilleryPackager.Debian.Generators.Changelog do
       |> Path.join
       |> File.rename(Path.join([doc_dir, "changelog.gz"]))
   end
-
 end

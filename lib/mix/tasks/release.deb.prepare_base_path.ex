@@ -1,5 +1,8 @@
 defmodule Mix.Tasks.Release.Deb.PrepareBasePath do
-  @shortdoc "Creating base directories path"
+  @moduledoc """
+  This module provides a task for preparing base path
+  for debian packages
+  """
 
   use Mix.Task
 
@@ -19,8 +22,7 @@ defmodule Mix.Tasks.Release.Deb.PrepareBasePath do
   end
 
   defp additional_files_dir do
-    [ConfigUtil.rel_dest_path, "distillery_packager", "debian", "additional_files"]
-      |> Path.join
+    [ConfigUtil.rel_dest_path, "distillery_packager",
+                               "debian", "additional_files"] |> Path.join
   end
-
 end

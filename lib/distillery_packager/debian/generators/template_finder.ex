@@ -2,6 +2,8 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
   @moduledoc """
   This module decides whether to use a custom template or to use the default.
   """
+  alias DistilleryPackager.Utils.Config, as: ConfigUtil
+
   import Mix.Releases.Logger, only: [debug: 1, info: 1]
 
   def retrieve(pathname) do
@@ -19,7 +21,7 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
 
   defp user_provided_path(pathname) do
     [
-      DistilleryPackager.Utils.Config.rel_dest_path,
+      ConfigUtil.rel_dest_path,
       "distillery_packager", "debian", "templates", pathname
     ]
       |> List.flatten
@@ -28,11 +30,10 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
 
   defp default_path(pathname) do
     [
-      DistilleryPackager.Utils.Config.root,
+      ConfigUtil.root,
       "templates", pathname
     ]
       |> List.flatten
       |> Path.join
   end
-
 end

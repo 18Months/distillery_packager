@@ -74,5 +74,4 @@ defmodule DistilleryPackager.Utils.File do
         end
       end)
   end
-
 end

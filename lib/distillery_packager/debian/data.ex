@@ -4,7 +4,9 @@ defmodule DistilleryPackager.Debian.Data do
   debian package.
   """
   alias DistilleryPackager.Utils.Compression
-  alias DistilleryPackager.Debian.Generators.{Changelog, Upstart, Systemd, Sysvinit}
+  alias DistilleryPackager.Utils.Config, as: ConfigUtil
+  alias DistilleryPackager.Debian.Generators.
+          {Changelog, Upstart, Systemd, Sysvinit}
   alias Mix.Project
 
   import Mix.Releases.Logger, only: [info: 1, debug: 1, error: 1]
@@ -66,7 +68,7 @@ defmodule DistilleryPackager.Debian.Data do
   def copy_additional_files(data_dir, [{src, dst} | tail]) do
     rel_dst = Path.join(data_dir, Path.relative(dst))
     rel_src = [
-          DistilleryPackager.Utils.Config.rel_dest_path,
+          ConfigUtil.rel_dest_path,
           "distillery_packager", "debian", "additional_files", src
         ] |> List.flatten |> Path.join
 
@@ -83,11 +85,15 @@ defmodule DistilleryPackager.Debian.Data do
     copy_additional_files(data_dir, tail)
   end
   def copy_additional_files(data_dir, [_ | tail]) do
-    error("Copy of a file in the additional file list has been skipped, invalid convention format")
+    error("Copy of a file in the additional file list has been skipped,
+          invalid convention format")
     copy_additional_files(data_dir, tail)
   end
   def copy_additional_files(_, _), do: nil
 
+  defp src_path(%{test_mode: true} = config) do
+    Path.join([ConfigUtil.rel_dest_path, config.name])
+  end
   defp src_path(config) do
     Path.join([Project.build_path, "rel", config.name])
   end

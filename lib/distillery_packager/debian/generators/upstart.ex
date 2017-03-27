@@ -30,5 +30,4 @@ defmodule DistilleryPackager.Debian.Generators.Upstart do
         |> Path.join
         |> File.write(upstart_script)
   end
-
 end

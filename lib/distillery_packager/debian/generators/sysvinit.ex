@@ -29,5 +29,4 @@ defmodule DistilleryPackager.Debian.Generators.Sysvinit do
         |> Path.join
         |> File.write(systemd_script)
   end
-
 end

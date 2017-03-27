@@ -1,16 +1,24 @@
 defmodule DistilleryPackagerTest.GenerateTemplatesTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case
 
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
-  setup do
+  setup_all do
     dest = [ConfigUtil.root, "rel"] |> Path.join
 
-    assert Mix.Tasks.Release.Deb.GenerateTemplates.run(:test)
+    Mix.Tasks.Release.Deb.PrepareBasePath.run(:test)
+    Mix.Tasks.Release.Deb.GenerateTemplates.run(:test)
 
     on_exit fn ->
-      {:ok, _} = File.rm_rf(dest)
+      File.rm_rf!(dest)
     end
+  end
+
+  test "Check that mix task creates correct base path directories" do
+    dest = [ConfigUtil.root, "rel"] |> Path.join
+
+    assert [dest, "distillery_packager", "debian", "additional_files"]
+            |> Path.join |> File.exists?
   end
 
   test "Check that mix task copies over the config to the correct dir" do
@@ -30,7 +38,5 @@ defmodule DistilleryPackagerTest.GenerateTemplatesTest do
             "init_scripts", "upstart.conf.eex"]
             |> Path.join
             |> File.exists?
-
-    assert File.rm_rf!(dest)
   end
 end

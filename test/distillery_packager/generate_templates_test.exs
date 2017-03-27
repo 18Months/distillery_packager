@@ -1,20 +1,26 @@
 defmodule DistilleryPackagerTest.GenerateTemplatesTest do
   use ExUnit.Case
 
+  alias DistilleryPackager.Utils.Config, as: ConfigUtil
+
   test "Check that mix task copies over the config to the correct dir" do
-    dest = [Path.dirname(__DIR__), "templates"] |> Path.join
-    assert :ok = File.mkdir_p!(dest)
-    assert Mix.Tasks.Release.Deb.GenerateTemplates.copy_templates(dest)
-    assert [dest, "debian", "changelog.eex"] |> Path.join |> File.exists?
-    assert [dest, "debian", "control.eex"] |> Path.join |> File.exists?
+    dest = [ConfigUtil.root, "rel"] |> Path.join
 
-    assert [dest, "init_scripts", "systemd.service.eex"]
-      |> Path.join
-      |> File.exists?
+    assert Mix.Tasks.Release.Deb.GenerateTemplates.run(:test)
+    assert [dest, "distillery_packager", "debian", "templates", "changelog.eex"]
+            |> Path.join |> File.exists?
+    assert [dest, "distillery_packager", "debian", "templates", "control.eex"]
+            |> Path.join |> File.exists?
 
-    assert [dest, "init_scripts", "upstart.conf.eex"]
-      |> Path.join
-      |> File.exists?
+    assert [dest, "distillery_packager", "debian", "templates",
+            "init_scripts", "systemd.service.eex"]
+            |> Path.join
+            |> File.exists?
+
+    assert [dest, "distillery_packager", "debian", "templates",
+            "init_scripts", "upstart.conf.eex"]
+            |> Path.join
+            |> File.exists?
 
     assert File.rm_rf!(dest)
   end

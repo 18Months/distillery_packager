@@ -15,10 +15,10 @@ defmodule Mix.Tasks.Release.Deb.GenerateTemplates do
     copy_templates()
   end
 
-  def copy_templates(dest \\ destination_dir()) do
+  defp copy_templates(dest \\ destination_dir()) do
     info "Copying templates to ./rel/distillery_packager/debian/templates"
     {:ok, _} =
-      [ConfigUtil.root, "templates"]
+      [ConfigUtil.root, "templates", "debian"]
         |> Path.join
         |> File.cp_r(dest, fn(_source, destination) ->
           IO.gets("Overwriting #{destination |> Path.basename }. " <>

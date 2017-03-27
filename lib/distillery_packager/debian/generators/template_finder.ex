@@ -31,7 +31,7 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
   defp default_path(pathname) do
     [
       ConfigUtil.root,
-      "templates", pathname
+      "templates", "debian", pathname
     ]
       |> List.flatten
       |> Path.join

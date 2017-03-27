@@ -1,0 +1,29 @@
+[Unit]
+Description=<%= description %>
+After=network.target
+
+[Service]
+Type=simple
+
+User=<%= uid %>
+Group=<%= gid %>
+
+<%= if uid == "root" do %>
+Environment=HOME=/root
+<% else %>
+Environment=HOME=/home/<%= uid %>
+<% end %>
+
+WorkingDirectory=/opt/<%= name %>
+
+ExecStart=/opt/<%= name %>/bin/<%= name %> start
+ExecStop=/opt/<%= name %>/bin/<%= name %> stop
+
+Restart=on-failure
+RemainAfterExit=yes
+RestartSec=5
+
+SyslogIdentifier=<%= name %>
+
+[Install]
+WantedBy=multi-user.target

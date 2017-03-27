@@ -16,7 +16,7 @@ defmodule DistilleryPackager.Debian.Generators.Changelog do
         |> Timex.format("%a, %d %b %Y %H:%M:%S GMT", :strftime)
 
     changelog =
-      ["debian", "changelog.eex"]
+      ["changelog.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
           sanitized_name: config.sanitized_name,

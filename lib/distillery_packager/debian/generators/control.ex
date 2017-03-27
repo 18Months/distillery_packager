@@ -10,7 +10,7 @@ defmodule DistilleryPackager.Debian.Generators.Control do
     debug "Building Control file"
 
     out =
-      ["debian", "control.eex"]
+      ["control.eex"]
         |> TemplateFinder.retrieve
         |> EEx.eval_file([
           description: config.description,

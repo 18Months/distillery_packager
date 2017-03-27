@@ -27,9 +27,11 @@ Before using distillery_packager, you'll need the following packages installed a
 
 Add distillery_packager to your list of dependencies in `mix.exs`:
 
-  def deps do
-   [{:distillery_packager, "~> 0.4"}]
-  end
+```bash
+def deps do
+  [{:distillery_packager, "~> 0.4"}]
+end
+```
 
 ## General configuration
 
@@ -56,7 +58,7 @@ defmodule Testapp.Mixfile do
 
 The `deb_package` function must be set as:
 
-```diff
+```bash
 def deb_package do
    [
       vendor: "18Months S.r.l.",

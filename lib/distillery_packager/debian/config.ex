@@ -6,10 +6,9 @@ defmodule DistilleryPackager.Debian.Config do
   """
 
   defstruct name: nil, version: nil, arch: nil, description: nil, vendor: nil,
-            maintainers: nil, homepage: nil, licenses: nil,
-            external_dependencies: nil, maintainer_scripts: [],
-            config_files: [], additional_files: [],
-            owner: [user: "root", group: "root"]
+            maintainers: nil, homepage: nil, external_dependencies: nil,
+            maintainer_scripts: [], config_files: [],
+            additional_files: [], owner: [user: "root", group: "root"]
 
   use Vex.Struct
 
@@ -25,7 +24,6 @@ defmodule DistilleryPackager.Debian.Config do
   validates :vendor, presence: true
   validates :maintainers, presence: true
   validates :homepage, presence: true
-  validates :licenses, presence: true
   validates [:owner, :user], presence: true
   validates [:owner, :group], presence: true
 
@@ -71,7 +69,7 @@ defmodule DistilleryPackager.Debian.Config do
     |> Enum.reject(&(is_nil(&1)))
   end
 
-  @joining_list_values [:licenses, :maintainers, :external_dependencies]
+  @joining_list_values [:maintainers, :external_dependencies]
 
   defp handle_config(key, [_ | _] = value) when key in @joining_list_values do
     {key, Enum.join(value, ", ")}

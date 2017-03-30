@@ -11,7 +11,6 @@ defmodule TestHelper do
     %{
       name:                  Faker.App.name,
       version:               Faker.App.version,
-      licenses:              ["MIT", "GPL2"],
       vendor:                Faker.Company.name,
       arch:                  "amd64",
       maintainers:           ["#{Faker.Name.name} <#{Faker.Internet.email}>"],

@@ -39,13 +39,6 @@ defmodule DistilleryPackagerTest.DataTest do
       "test_file"
     ])
 
-    changelog = Path.join([
-      meta.config.test_dir,
-      "usr", "share", "doc",
-      meta.config.metadata.sanitized_name,
-      "changelog.gz"
-    ])
-
     # Make sample data
     :ok = File.mkdir_p(app_path)
     :ok = File.write(src_test_file, "Lorem Ipsum")
@@ -64,6 +57,5 @@ defmodule DistilleryPackagerTest.DataTest do
       stderr_to_stdout: true)
 
     assert true = File.exists? dest_test_file
-    assert true = File.exists? changelog
   end
 end

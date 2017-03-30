@@ -16,7 +16,6 @@ defmodule DistilleryPackager.Debian.Generators.Control do
           description: config.description,
           sanitized_name: config.sanitized_name,
           version: config.version,
-          licenses: config.licenses,
           vendor: config.vendor,
           arch: config.arch,
           maintainers: config.maintainers,

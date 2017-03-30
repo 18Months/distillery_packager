@@ -5,8 +5,7 @@ defmodule DistilleryPackager.Debian.Data do
   """
   alias DistilleryPackager.Utils.Compression
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
-  alias DistilleryPackager.Debian.Generators.
-          {Changelog, Upstart, Systemd, Sysvinit}
+  alias DistilleryPackager.Debian.Generators.{Upstart, Systemd, Sysvinit}
   alias Mix.Project
 
   import Mix.Releases.Logger, only: [info: 1, debug: 1, error: 1]
@@ -17,7 +16,6 @@ defmodule DistilleryPackager.Debian.Data do
     copy_additional_files(data_dir, config.additional_files)
     remove_targz_file(data_dir, config)
     DistilleryPackager.Utils.File.remove_fs_metadata(data_dir)
-    Changelog.build(data_dir, config)
     Upstart.build(data_dir, config)
     Systemd.build(data_dir, config)
     Sysvinit.build(data_dir, config)

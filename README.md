@@ -8,10 +8,9 @@ Elixir lib for creating Debian and RPM packages with Distillery.
 ## Features
 
  1. [x] Able to build Debian packages
-     1. [x] With changelog
-     2. [x] With control file
-     3. [x] With customizable pre/post install/remove scripts
-     4. [x] With capability to add custom files/scripts to the package
+     1. [x] With control file
+     2. [x] With customizable pre/post install/remove scripts
+     3. [x] With capability to add custom files/scripts to the package
  2. [ ] Able to build RPM packages
  3. [x] Automatically builds init scripts, which are all customizable, for:
      1. [x] Systemd
@@ -67,7 +66,6 @@ def deb_package do
       vendor: "18Months S.r.l.",
       maintainers: ["18Months <info@18months.it>"],
       homepage: "https://www.18months.it",
-      licenses: ["MIT"],
       external_dependencies: [],
       maintainer_scripts: [
          pre_install: "rel/distillery_packager/debian/install_scripts/pre_install.sh",
@@ -92,9 +90,6 @@ A list of configuration options you can add to `deb_package/0`:
  - `homepage`
    - String
    - Should be in the format `https://www.18months.it`
- - `licenses`
-   - Array of Strings
-   - Can be something like `["Copyright <date> <company_name>"]` if you are building private packages.
  - `external_dependencies`
    - Array of Strings
    - Should be in the format of `package-name (operator version_number)` where operator is either `<<`, `<=`, `=`, `>=`, or `>>` - [read more about this here.][1]

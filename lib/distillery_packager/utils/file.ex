@@ -14,8 +14,9 @@ defmodule DistilleryPackager.Utils.File do
         |> Path.join
         |> Path.wildcard
         |> Enum.map_reduce(0, fn(file, acc) ->
-          size = File.stat!(file).size
-          {size, size + acc}
+          size = File.stat!(file).size / 1024
+          size_rounded = size |> round
+          {size_rounded, size_rounded + acc}
         end)
     size
   end

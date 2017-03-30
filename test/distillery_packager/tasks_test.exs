@@ -23,10 +23,6 @@ defmodule DistilleryPackagerTest.TasksTest do
 
   test "Check that mix task copies over the config", config do
     assert [config.dest, "distillery_packager", "debian",
-            "templates", "changelog.eex"]
-            |> Path.join |> File.exists?
-
-    assert [config.dest, "distillery_packager", "debian",
             "templates", "control.eex"]
             |> Path.join |> File.exists?
 

@@ -29,11 +29,14 @@ defmodule DistilleryPackager.Debian.Control do
 
   defp add_conffiles_file(config, control_dir) do
     debug "Marking config files"
-    config_files = Map.get(config, :config_files, [])
+    config_files = config
+      |> Map.get(:config_files, [])
+      |> Enum.map_join(&(&1 <> "\n"))
+
     :ok =
       [control_dir, "conffiles"]
         |> Path.join()
-        |> File.write(Enum.join(config_files, "\n"))
+        |> File.write(config_files)
   end
 
   defp add_custom_hooks(config, control_dir) do

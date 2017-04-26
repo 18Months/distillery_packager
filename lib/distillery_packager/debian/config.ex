@@ -48,10 +48,10 @@ defmodule DistilleryPackager.Debian.Config do
       |> check_valid
   end
 
-  defp format_package_arch([arch: arch]), do: arch
+  defp format_package_arch(%{architecture: arch}), do: arch
   defp format_package_arch(_), do: Utils.Config.detect_arch
 
-  defp format_package_version(version, [distribution: distribution]) do
+  defp format_package_version(version, %{distribution: distribution}) do
     "#{version}~#{distribution}"
   end
   defp format_package_version(version, _), do: version

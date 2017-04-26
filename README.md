@@ -117,7 +117,7 @@ A list of configuration options you can add to `deb_package/0`:
 
 You can build a deb by adding `plugin DistilleryPackager.Plugin` to your `rel/config.exs` file.
 
-You can also specify target distribution with `plugin DistilleryPackager.Plugin, distribution: "xenial"`
+You can also specify target distribution and architecture with `plugin DistilleryPackager.Plugin, %{distribution: "xenial", architecture: "amd64"}`
 
 The name and version is taken from the `rel/config.exs` file.
 

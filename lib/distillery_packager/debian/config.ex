@@ -32,7 +32,7 @@ defmodule DistilleryPackager.Debian.Config do
       [
         {:name, Atom.to_string(release.name)},
         {:version, format_package_version(release.version, options)},
-        {:arch, Utils.Config.detect_arch},
+        {:arch, format_package_arch(options)},
         {:description, Project.config[:description]}
       ] ++ config_from_package(Project.config[:deb_package])
 
@@ -47,6 +47,9 @@ defmodule DistilleryPackager.Debian.Config do
       |> DistilleryPackager.Utils.Config.sanitize_config
       |> check_valid
   end
+
+  defp format_package_arch([arch: arch]), do: arch
+  defp format_package_arch(_), do: Utils.Config.detect_arch
 
   defp format_package_version(version, [distribution: distribution]) do
     "#{version}~#{distribution}"

@@ -71,9 +71,9 @@ def deb_package do
          pre_install: "rel/distillery_packager/debian/install_scripts/pre_install.sh",
          post_install: "rel/distillery_packager/debian/install_scripts/post_install.sh",
          pre_uninstall: "rel/distillery_packager/debian/install_scripts/pre_uninstall.sh"
-      ]
+      ],
       config_files: ["/etc/init/.conf"],
-      additional_files: [{"configs", "/etc/distillery_packager/configs"}]
+      additional_files: [{"configs", "/etc/distillery_packager/configs"}],
       owner: [user: "root", group: "root"]
    ]
 end

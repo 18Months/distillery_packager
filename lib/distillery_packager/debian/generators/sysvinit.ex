@@ -28,5 +28,10 @@ defmodule DistilleryPackager.Debian.Generators.Sysvinit do
       [out_dir, config.sanitized_name]
         |> Path.join
         |> File.write(systemd_script)
+
+    :ok =
+      [out_dir, config.sanitized_name]
+        |> Path.join
+        |> File.chmod(0o755)
   end
 end

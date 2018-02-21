@@ -31,7 +31,7 @@ Add distillery_packager to your list of dependencies in `mix.exs`:
 
 ```bash
 def deps do
-  [{:distillery_packager, "~> 0.4"}]
+  [{:distillery_packager, "~> 1.0"}]
 end
 ```
 

@@ -39,7 +39,8 @@ defmodule DistilleryPackager.Debian.Data do
   # We don't use/need the .tar.gz file built by Distillery Packager, so
   # remove it from the data dir to reduce filesize.
   defp remove_targz_file(data_dir, config) do
-    [data_dir, config.base_path, config.name, "#{config.name}-#{config.version}.tar.gz"]
+    [data_dir, config.base_path, config.name,
+    "#{config.name}-#{config.version}.tar.gz"]
       |> Path.join
       |> File.rm
   end

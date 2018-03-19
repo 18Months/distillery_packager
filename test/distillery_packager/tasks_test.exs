@@ -4,7 +4,7 @@ defmodule DistilleryPackagerTest.TasksTest do
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
   setup_all do
-    dest = [ConfigUtil.root, "rel"] |> Path.join
+    dest = ConfigUtil.rel_dest_path()
 
     Mix.Tasks.Release.Deb.PrepareBasePath.run(:test)
     Mix.Tasks.Release.Deb.GenerateTemplates.run(:test)

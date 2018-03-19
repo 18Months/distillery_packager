@@ -22,7 +22,8 @@ defmodule TestHelper do
       config_files:          ["dummy_file"],
       owner:                 [user: "root", group: "root"],
       additional_files:      [],
-      test_mode:             true
+      test_mode:             true,
+      base_path:             "/opt"
     } |> DistilleryPackager.Utils.Config.sanitize_config
   end
 end

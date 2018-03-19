@@ -19,6 +19,6 @@ env HOME=/home/<%= uid %>
 <% end %>
 export HOME
 
-pre-start exec /bin/sh /opt/<%= name %>/bin/<%= name %> start
+pre-start exec /bin/sh <%= base_path %>/<%= name %>/bin/<%= name %> start
 
-post-stop exec /bin/sh /opt/<%= name %>/bin/<%= name %> stop
+post-stop exec /bin/sh <%= base_path %>/<%= name %>/bin/<%= name %> stop

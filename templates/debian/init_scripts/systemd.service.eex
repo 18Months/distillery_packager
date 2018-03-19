@@ -14,10 +14,10 @@ Environment=HOME=/root
 Environment=HOME=/home/<%= uid %>
 <% end %>
 
-WorkingDirectory=/opt/<%= name %>
+WorkingDirectory=<%= base_path %>/<%= name %>
 
-ExecStart=/opt/<%= name %>/bin/<%= name %> start
-ExecStop=/opt/<%= name %>/bin/<%= name %> stop
+ExecStart=<%= base_path %>/<%= name %>/bin/<%= name %> start
+ExecStop=<%= base_path %>/<%= name %>/bin/<%= name %> stop
 
 Restart=on-failure
 RemainAfterExit=yes

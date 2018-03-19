@@ -66,6 +66,7 @@ def deb_package do
       vendor: "18Months S.r.l.",
       maintainers: ["18Months <info@18months.it>"],
       homepage: "https://www.18months.it",
+      base_path: "/opt",
       external_dependencies: [],
       maintainer_scripts: [
          pre_install: "rel/distillery_packager/debian/install_scripts/pre_install.sh",
@@ -90,6 +91,9 @@ A list of configuration options you can add to `deb_package/0`:
  - `homepage`
    - String
    - Should be in the format `https://www.18months.it`
+ - `base_path`
+   - String
+   - The base path where the package will be installed in the destination host.
  - `external_dependencies`
    - Array of Strings
    - Should be in the format of `package-name (operator version_number)` where operator is either `<<`, `<=`, `=`, `>=`, or `>>` - [read more about this here.][1]

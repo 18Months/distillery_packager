@@ -3,8 +3,8 @@ defmodule DistilleryPackager.Mixfile do
 
   def project do
     [app: :distillery_packager,
-     version: "1.0.2",
-     elixir: "~> 1.4",
+     version: "1.0.3",
+     elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description(),
@@ -36,14 +36,14 @@ defmodule DistilleryPackager.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:distillery,  "~> 1.2"},
-      {:vex,         "~> 0.5"},
+      {:distillery,  "~> 1.5"},
+      {:vex,         "~> 0.6"},
       {:timex,       "~> 3.0"},
       {:ex_doc,      ">= 0.0.0", only: :dev},
-      {:credo,       "~> 0.6", only: [:dev, :test], runtime: false},
+      {:credo,       "~> 0.8", only: [:dev, :test], runtime: false},
       {:dogma,       "~> 0.1", only: [:dev, :test], runtime: false},
-      {:faker,       "~> 0.6", only: :test},
-      {:excoveralls, "~> 0.4", only: :test},
+      {:faker,       "~> 0.9", only: :test},
+      {:excoveralls, "~> 0.6", only: :test},
     ]
   end
 

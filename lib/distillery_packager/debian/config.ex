@@ -7,7 +7,7 @@ defmodule DistilleryPackager.Debian.Config do
 
   defstruct name: nil, version: nil, arch: nil, description: nil, vendor: nil,
             maintainers: nil, homepage: nil, external_dependencies: nil,
-            maintainer_scripts: [], config_files: [],
+            maintainer_scripts: [], config_files: [], base_path: "/opt",
             additional_files: [], owner: [user: "root", group: "root"]
 
   use Vex.Struct
@@ -24,6 +24,7 @@ defmodule DistilleryPackager.Debian.Config do
   validates :vendor, presence: true
   validates :maintainers, presence: true
   validates :homepage, presence: true
+  validates :base_path, presence: true
   validates [:owner, :user], presence: true
   validates [:owner, :group], presence: true
 
@@ -91,6 +92,9 @@ defmodule DistilleryPackager.Debian.Config do
   end
   defp handle_config(:vendor, value) when byte_size(value) > 0 do
     {:vendor, value}
+  end
+  defp handle_config(:base_path, value) do
+    {:base_path, Path.absname(value, "/")}
   end
   defp handle_config(:owner, value) when is_list(value) do
     handle_config(:owner, Enum.into(value, %{}))

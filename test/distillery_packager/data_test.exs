@@ -34,7 +34,7 @@ defmodule DistilleryPackagerTest.DataTest do
 
     dest_test_file = Path.join([
       meta.config.test_dir,
-      "opt",
+      meta.config.metadata.base_path,
       meta.config.metadata.name,
       "test_file"
     ])

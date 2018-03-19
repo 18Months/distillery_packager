@@ -15,6 +15,7 @@ defmodule DistilleryPackager.Debian.Generators.Upstart do
         |> EEx.eval_file([
             description: config.description,
             name: config.name,
+            base_path: config.base_path,
             uid: config.owner[:user],
             gid: config.owner[:group]
         ])

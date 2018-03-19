@@ -39,7 +39,7 @@ defmodule DistilleryPackager.Debian.Data do
   # We don't use/need the .tar.gz file built by Distillery Packager, so
   # remove it from the data dir to reduce filesize.
   defp remove_targz_file(data_dir, config) do
-    [data_dir, "opt", config.name, "#{config.name}-#{config.version}.tar.gz"]
+    [data_dir, config.base_path, config.name, "#{config.name}-#{config.version}.tar.gz"]
       |> Path.join
       |> File.rm
   end
@@ -48,13 +48,13 @@ defmodule DistilleryPackager.Debian.Data do
     debug("Building debian data directory")
     data_dir = Path.join([dir, "data"])
     :ok = File.mkdir_p(data_dir)
-    :ok = File.mkdir_p(Path.join([data_dir, "opt", config.name]))
+    :ok = File.mkdir_p(Path.join([data_dir, config.base_path, config.name]))
 
     data_dir
   end
 
   defp copy_release(data_dir, config) do
-    dest = Path.join([data_dir, "opt", config.name])
+    dest = Path.join([data_dir, config.base_path, config.name])
     src = src_path(config)
 
     debug("Copying #{src} into #{dest} directory")

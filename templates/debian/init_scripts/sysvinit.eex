@@ -17,7 +17,7 @@
 
 DAEMON_NAME=<%= name %>
 DAEMON_USER=<%= uid %>
-DAEMON_PATH=/opt/<%= name %>/bin/<%= name %>
+DAEMON_PATH=<%= base_path %>/<%= name %>/bin/<%= name %>
 
 DAEMON_DESC=$(get_lsb_header_val $0 "Short-Description")
 DAEMON_NICE=0

@@ -4,7 +4,9 @@ Vendor: <%= vendor %>
 Architecture: <%= arch %>
 Maintainer: <%= maintainers %>
 Installed-Size: <%= installed_size %>
+<%= if external_dependencies != nil do %>
 Depends: <%= external_dependencies %>
+<% end %>
 Priority: optional
 Section: utils
 Homepage: <%= homepage %>

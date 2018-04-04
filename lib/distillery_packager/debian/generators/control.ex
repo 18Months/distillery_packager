@@ -22,7 +22,7 @@ defmodule DistilleryPackager.Debian.Generators.Control do
           installed_size: config.installed_size,
           external_dependencies: config.external_dependencies,
           homepage: config.homepage
-        ])
+        ], [trim: true])
 
     :ok = File.write(Path.join([control_dir, "control"]), out)
   end

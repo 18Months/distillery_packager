@@ -16,7 +16,7 @@ defmodule DistilleryPackager do
     :ok = Package.build(deb_root, config)
 
     info("A debian package has been created " <>
-         "in ./rel/#{config.name}-#{config.version}_#{config.arch}.deb")
+         "in ./rel/#{config.sanitized_name}-#{config.version}_#{config.arch}.deb")
   end
 
   def remove_deb_dir do

@@ -12,7 +12,7 @@ defmodule DistilleryPackager.Debian.Package do
 
     out = Path.join([
       ConfigUtil.rel_dest_path,
-      "#{config.sanitized_name}-#{config.version}_#{config.arch}.deb"
+      filename(config)
     ])
 
     File.rm out
@@ -28,5 +28,9 @@ defmodule DistilleryPackager.Debian.Package do
     {_response, 0} = System.cmd("ar", args)
 
     :ok
+  end
+
+  def filename(config) do
+    "#{config.sanitized_name}_#{config.version}_#{config.arch}.deb"
   end
 end

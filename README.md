@@ -116,6 +116,9 @@ A list of configuration options you can add to `deb_package/0`:
    - If set, requires both `user` and `group` keys to be set.
    - This is used when building the archive to set the correct user and group
    - Defaults to root for user & group.
+ - `package_name`
+   - String
+   - Specify a custom .deb package name, overriding the default which is based on the OTP release name
 
 ## Distillery configuration
 

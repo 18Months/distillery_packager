@@ -8,7 +8,8 @@ defmodule DistilleryPackager.Debian.Config do
   defstruct name: nil, version: nil, arch: nil, description: nil, vendor: nil,
             maintainers: nil, homepage: nil, external_dependencies: nil,
             maintainer_scripts: [], config_files: [], base_path: "/opt",
-            additional_files: [], owner: [user: "root", group: "root"]
+            additional_files: [], owner: [user: "root", group: "root"],
+            package_name: nil
 
   use Vex.Struct
 
@@ -102,6 +103,9 @@ defmodule DistilleryPackager.Debian.Config do
   defp handle_config(:owner, %{user: user, group: group})
       when user != nil and group != nil do
     {:owner, [user: user, group: group]}
+  end
+  defp handle_config(:package_name, value) do
+    {:package_name, value}
   end
   defp handle_config(_, _), do: nil
 

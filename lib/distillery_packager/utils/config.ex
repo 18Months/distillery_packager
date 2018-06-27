@@ -18,15 +18,47 @@ defmodule DistilleryPackager.Utils.Config do
   end
 
   @doc """
-  Sanitize certain elements so that they are filesystem safe.
+  Sanitize certain elements so that they are filesystem safe, and fit within
+  the Debian policy / conventions.
   """
   def sanitize_config(config = %{}) do
-    sanitized_name =
-      config.name
-        |> String.downcase
-        |> String.replace(~r([^a-z\-\_\.]), "")
+    Map.put(config, :sanitized_name, package_name(config))
+  end
 
-    Map.put(config, :sanitized_name, sanitized_name)
+  @doc """
+  Return a package name to use; either the provided `package_name` from
+  configuration, or a sanitized version of `name` as a default.
+  """
+  def package_name(%{package_name: name}) when is_binary(name) do
+    validate_package_name(name)
+  end
+
+  def package_name(config = %{}) do
+    config.name
+      |> String.downcase
+      |> String.replace(~r([^a-z0-9+\-_.]), "")
+      |> String.replace("_", "-")
+      |> validate_package_name
+  end
+
+  @doc """
+  Validate the provided package name and return it, or throw an error if it
+  doesn't match against expectations.
+  """
+  def validate_package_name(name) when is_binary(name) do
+    if Regex.match?(~r/^[a-z0-9][a-z0-9.+-]+$/, name) do
+      name
+    else
+      """
+      Error: Debian package names must consist only of lower case
+      letters (a-z), digits (0-9), plus (+) and minus (-) signs,
+      and periods (.). They must be at least two characters long
+      and must start with an alphanumeric character.
+      """
+      |> String.trim
+      |> String.replace("\n", " ")
+      |> throw
+    end
   end
 
   @doc """

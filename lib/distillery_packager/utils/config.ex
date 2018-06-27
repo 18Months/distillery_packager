@@ -24,7 +24,7 @@ defmodule DistilleryPackager.Utils.Config do
     sanitized_name =
       config.name
         |> String.downcase
-        |> String.replace(~r([^a-z\-\_\.]), "")
+        |> String.replace(~r([^a-z0-9+\-_.]), "")
         |> String.replace("_", "-")
 
     Map.put(config, :sanitized_name, sanitized_name)

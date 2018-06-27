@@ -26,8 +26,25 @@ defmodule DistilleryPackager.Utils.Config do
         |> String.downcase
         |> String.replace(~r([^a-z0-9+\-_.]), "")
         |> String.replace("_", "-")
+        |> validate_package_name
 
     Map.put(config, :sanitized_name, sanitized_name)
+  end
+
+  def validate_package_name(name) when is_binary(name) do
+    if Regex.match?(~r/^[a-z0-9][a-z0-9.+-]+$/, name) do
+      name
+    else
+      """
+      Error: Debian package names must consist only of lower case
+      letters (a-z), digits (0-9), plus (+) and minus (-) signs,
+      and periods (.). They must be at least two characters long
+      and must start with an alphanumeric character.
+      """
+      |> String.trim
+      |> String.replace("\n", " ")
+      |> throw
+    end
   end
 
   @doc """

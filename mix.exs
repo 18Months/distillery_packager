@@ -37,13 +37,13 @@ defmodule DistilleryPackager.Mixfile do
   defp deps do
     [
       {:distillery,  "~> 1.5"},
-      {:vex,         "~> 0.6"},
-      {:timex,       "~> 3.0"},
+      {:vex,         "~> 0.8"},
+      {:timex,       "~> 3.3"},
       {:ex_doc,      ">= 0.0.0", only: :dev},
-      {:credo,       "~> 0.8", only: [:dev, :test], runtime: false},
+      {:credo,       "~> 0.9", only: [:dev, :test], runtime: false},
       {:dogma,       "~> 0.1", only: [:dev, :test], runtime: false},
-      {:faker,       "~> 0.9", only: :test},
-      {:excoveralls, "~> 0.6", only: :test},
+      {:faker,       "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.9", only: :test},
     ]
   end
 

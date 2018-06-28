@@ -1,7 +1,6 @@
 # Distillery Packager
 
 [![Coverage Status](https://coveralls.io/repos/github/18Months/distillery_packager/badge.svg?branch=master)](https://coveralls.io/github/18Months/distillery_packager?branch=master)
-[![Hex.pm](https://img.shields.io/hexpm/v/plug.svg)](https://hex.pm/packages/distillery_packager)
 [![Build Status](https://travis-ci.org/18Months/distillery_packager.svg?branch=master)](https://travis-ci.org/18Months/distillery_packager)
 
 Elixir lib for creating Debian and RPM packages with Distillery.

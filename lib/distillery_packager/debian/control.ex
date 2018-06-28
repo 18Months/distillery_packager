@@ -18,9 +18,11 @@ defmodule DistilleryPackager.Debian.Control do
     Control.build(config, control_dir)
     add_custom_hooks(config, control_dir)
     add_conffiles_file(config, control_dir)
+    System.cmd("chmod", ["-R", "og-w", control_dir])
     Compression.compress(
       control_dir,
-      Path.join([control_dir, "..", "control.tar.gz"])
+      Path.join([control_dir, "..", "control.tar.gz"]),
+      owner: %{user: "root", group: "root"}
     )
     DistilleryPackager.Utils.File.remove_tmp(control_dir)
 

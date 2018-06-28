@@ -26,6 +26,7 @@ defmodule DistilleryPackager.Debian.Data do
       DistilleryPackager.Utils.File.get_dir_size(data_dir)
     )
 
+    System.cmd("chmod", ["-R", "og-w", data_dir])
     Compression.compress(
       data_dir,
       Path.join([data_dir, "..", "data.tar.gz"]),

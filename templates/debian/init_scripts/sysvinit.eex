@@ -92,9 +92,10 @@ do_usage() {
 }
 
 case "$1" in
-start)   do_start;   exit $? ;;
-stop)    do_stop;    exit $? ;;
-restart) do_restart; exit $? ;;
-status)  do_status;  exit $? ;;
-*)       do_usage;   exit  1 ;;
+start)        do_start;   exit $? ;;
+stop)         do_stop;    exit $? ;;
+restart)      do_restart; exit $? ;;
+force-reload) do_restart; exit $? ;;
+status)       do_status;  exit $? ;;
+*)            do_usage;   exit  1 ;;
 esac

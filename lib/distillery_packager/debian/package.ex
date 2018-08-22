@@ -5,7 +5,7 @@ defmodule DistilleryPackager.Debian.Package do
   """
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
-  import Mix.Releases.Logger, only: [debug: 1]
+  import Mix.Releases.Shell, only: [debug: 1]
 
   def build(dir, config) do
     debug "Building deb file"

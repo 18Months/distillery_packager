@@ -16,7 +16,7 @@ defmodule DistilleryPackager.Debian.Config do
   alias DistilleryPackager.Utils
   alias Mix.Project
 
-  import Mix.Releases.Logger, only: [error: 1]
+  import Mix.Releases.Shell, only: [error: 1]
 
   validates :name, presence: true
   validates :version, presence: true

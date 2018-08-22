@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Release.Deb.PrepareBasePath do
 
   use Mix.Task
 
-  import Mix.Releases.Logger
+  import Mix.Releases.Shell
 
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 

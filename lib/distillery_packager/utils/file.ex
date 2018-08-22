@@ -2,7 +2,7 @@ defmodule DistilleryPackager.Utils.File do
   @moduledoc """
   This module provides functions about the filesystem.
   """
-  import Mix.Releases.Logger, only: [debug: 1]
+  import Mix.Releases.Shell, only: [debug: 1]
 
   @doc """
   Retrieves all the files within a directory, retrieves the size of all these

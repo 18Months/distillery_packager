@@ -16,9 +16,14 @@ defmodule DistilleryPackager.Debian.Data do
     copy_additional_files(data_dir, config.additional_files)
     remove_targz_file(data_dir, config)
     DistilleryPackager.Utils.File.remove_fs_metadata(data_dir)
-    Upstart.build(data_dir, config)
-    Systemd.build(data_dir, config)
-    Sysvinit.build(data_dir, config)
+    case config.exclude_init_scripts do
+      true ->
+        debug("Excluding init scripts")
+      _ ->
+        Upstart.build(data_dir, config)
+        Systemd.build(data_dir, config)
+        Sysvinit.build(data_dir, config)
+    end
 
     config = Map.put_new(
       config,

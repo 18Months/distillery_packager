@@ -23,7 +23,8 @@ defmodule TestHelper do
       owner:                 [user: "root", group: "root"],
       additional_files:      [],
       test_mode:             true,
-      base_path:             "/opt"
+      base_path:             "/opt",
+      exclude_init_scripts:  nil
     } |> DistilleryPackager.Utils.Config.sanitize_config
   end
 end

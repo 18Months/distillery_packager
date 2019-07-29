@@ -9,7 +9,7 @@ defmodule DistilleryPackager.Debian.Config do
             maintainers: nil, homepage: nil, external_dependencies: nil,
             maintainer_scripts: [], config_files: [], base_path: "/opt",
             additional_files: [], owner: [user: "root", group: "root"],
-            package_name: nil
+            package_name: nil, exclude_init_scripts: nil
 
   use Vex.Struct
 
@@ -106,6 +106,9 @@ defmodule DistilleryPackager.Debian.Config do
   end
   defp handle_config(:package_name, value) do
     {:package_name, value}
+  end
+  defp handle_config(:exclude_init_scripts, value) do
+    {:exclude_init_scripts, value}
   end
   defp handle_config(_, _), do: nil
 

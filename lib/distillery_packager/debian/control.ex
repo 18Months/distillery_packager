@@ -6,7 +6,7 @@ defmodule DistilleryPackager.Debian.Control do
   alias DistilleryPackager.Debian.Generators.Control
   alias DistilleryPackager.Utils.Compression
 
-  import Mix.Releases.Shell, only: [debug: 1]
+  import Distillery.Releases.Shell, only: [debug: 1]
 
   # - Add ability to create pre-inst / post-inst hooks [WIP]
   def build(deb_root, config) do

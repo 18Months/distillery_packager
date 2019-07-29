@@ -8,7 +8,7 @@ defmodule DistilleryPackager.Debian.Data do
   alias DistilleryPackager.Debian.Generators.{Upstart, Systemd, Sysvinit}
   alias Mix.Project
 
-  import Mix.Releases.Shell, only: [info: 1, debug: 1, error: 1]
+  import Distillery.Releases.Shell, only: [info: 1, debug: 1, error: 1]
 
   def build(dir, config) do
     data_dir = make_data_dir(dir, config)

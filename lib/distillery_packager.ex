@@ -2,7 +2,7 @@ defmodule DistilleryPackager do
   @moduledoc """
   This module is used to kick off the debian package generation process.
   """
-  import Mix.Releases.Shell, only: [info: 1, debug: 1]
+  import Distillery.Releases.Shell, only: [info: 1, debug: 1]
 
   alias DistilleryPackager.Debian.{Control, Data, Package}
   alias Mix.Project

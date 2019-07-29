@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Generators.Sysvinit do
   """
   alias DistilleryPackager.Debian.Generators.TemplateFinder
 
-  import Mix.Releases.Shell, only: [debug: 1]
+  import Distillery.Releases.Shell, only: [debug: 1]
 
   def build(data_dir, config) do
     debug "Building Sysvinit File"

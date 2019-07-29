@@ -4,7 +4,7 @@ defmodule DistilleryPackager.Debian.Generators.TemplateFinder do
   """
   alias DistilleryPackager.Utils.Config, as: ConfigUtil
 
-  import Mix.Releases.Shell, only: [debug: 1, info: 1]
+  import Distillery.Releases.Shell, only: [debug: 1, info: 1]
 
   def retrieve(pathname) do
     path = user_provided_path(pathname)

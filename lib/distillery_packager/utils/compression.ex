@@ -2,7 +2,7 @@ defmodule DistilleryPackager.Utils.Compression do
   @moduledoc """
   This module provides utilities related to file compression
   """
-  import Mix.Releases.Shell, only: [debug: 1]
+  import Distillery.Releases.Shell, only: [debug: 1]
 
   @doc """
   Decides which tar binary to use (in OSX, we need to use gtar)

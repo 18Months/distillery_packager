@@ -3,14 +3,14 @@ defmodule DistilleryPackager.Mixfile do
 
   def project do
     [app: :distillery_packager,
-     version: "1.0.6",
+     version: "1.0.7",
      elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: description(),
      test_coverage: [tool: ExCoveralls],
      preferred_cli_env: [
-       "coveralls": :test,
+       coveralls: :test,
        "coveralls.detail": :test,
        "coveralls.post": :test],
      package: package(),
@@ -36,14 +36,14 @@ defmodule DistilleryPackager.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:distillery,  "~> 2.0"},
+      {:distillery,  "~> 2.1"},
       {:vex,         "~> 0.8"},
-      {:timex,       "~> 3.3"},
-      {:ex_doc,      ">= 0.0.0", only: :dev},
-      {:credo,       "~> 0.10", only: [:dev, :test], runtime: false},
+      {:timex,       "~> 3.6"},
+      {:ex_doc,      "~> 0.21", only: :dev},
+      {:credo,       "~> 1.1", only: [:dev, :test], runtime: false},
       {:dogma,       "~> 0.1", only: [:dev, :test], runtime: false},
-      {:faker,       "~> 0.10", only: :test},
-      {:excoveralls, "~> 0.9", only: :test},
+      {:faker,       "~> 0.12", only: :test},
+      {:excoveralls, "~> 0.11", only: :test},
     ]
   end
 

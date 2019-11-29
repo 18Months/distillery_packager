@@ -16,7 +16,7 @@ defmodule DistilleryPackager.Debian.Config do
   alias DistilleryPackager.Utils
   alias Mix.Project
 
-  import Mix.Releases.Shell, only: [error: 1]
+  import Distillery.Releases.Shell, only: [error: 1]
 
   validates :name, presence: true
   validates :version, presence: true
@@ -29,7 +29,7 @@ defmodule DistilleryPackager.Debian.Config do
   validates [:owner, :user], presence: true
   validates [:owner, :group], presence: true
 
-  def build_config(release = %Mix.Releases.Release{}, options) do
+  def build_config(release = %Distillery.Releases.Release{}, options) do
     base_config =
       [
         {:name, Atom.to_string(release.name)},

@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Release.Deb.PrepareBasePath do
 
     info "Making ./rel/distillery_packager/debian/packages directory"
     :ok =
-      additional_files_dir()
+      output_dir()
         |> File.mkdir_p
   end
 

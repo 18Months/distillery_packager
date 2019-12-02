@@ -12,6 +12,9 @@ defmodule DistilleryPackager.Debian.Package do
 
     out = Path.join([
       ConfigUtil.rel_dest_path,
+      "distillery_packager",
+      "debian",
+      "packages",
       filename(config)
     ])
 

@@ -148,6 +148,7 @@ mix release.deb.generate_templates
 
 ### Build
 
-Packages are build with the `mix release` command built in Distillery.
+Packages are build with the `mix distillery.release` command built in Distillery.
+Built packages will be moved to rel/distillery_packager/debian/packages
 
 [1]:https://www.debian.org/doc/manuals/maint-guide/dreq.en.html#control

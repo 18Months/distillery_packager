@@ -19,10 +19,20 @@ defmodule Mix.Tasks.Release.Deb.PrepareBasePath do
     :ok =
       additional_files_dir()
         |> File.mkdir_p
+
+    info "Making ./rel/distillery_packager/debian/packages directory"
+    :ok =
+      additional_files_dir()
+        |> File.mkdir_p
   end
 
   defp additional_files_dir do
     [ConfigUtil.rel_dest_path, "distillery_packager",
                                "debian", "additional_files"] |> Path.join
+  end
+
+  defp output_dir do
+    [ConfigUtil.rel_dest_path, "distillery_packager",
+                               "debian", "packages"] |> Path.join
   end
 end

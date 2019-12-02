@@ -3,7 +3,7 @@ defmodule DistilleryPackager.Mixfile do
 
   def project do
     [app: :distillery_packager,
-     version: "1.0.9",
+     version: "2.0.0",
      elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,

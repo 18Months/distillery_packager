@@ -1,11 +1,20 @@
-Package: <%= sanitized_name %>
+Package: <%= sanitized_name %><%= if external_dependencies != nil do %>
 Version: <%= version %>
 Vendor: <%= vendor %>
 Architecture: <%= arch %>
 Maintainer: <%= maintainers %>
-Installed-Size: <%= installed_size %><%= if external_dependencies != nil do %>
+Installed-Size: <%= installed_size %>
 Depends: <%= external_dependencies %>
-<% end %>Priority: optional
+Priority: optional
 Section: utils
 Homepage: <%= homepage %>
-Description: <%= description %>
+Description: <%= description %><% else %>
+Version: <%= version %>
+Vendor: <%= vendor %>
+Architecture: <%= arch %>
+Maintainer: <%= maintainers %>
+Installed-Size: <%= installed_size %>
+Priority: optional
+Section: utils
+Homepage: <%= homepage %>
+Description: <%= description %><% end %>

@@ -17,4 +17,5 @@ Installed-Size: <%= installed_size %>
 Priority: optional
 Section: utils
 Homepage: <%= homepage %>
-Description: <%= description %><% end %>
+Description: <%= description %>
+<% end %>

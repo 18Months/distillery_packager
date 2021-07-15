@@ -3,7 +3,7 @@ defmodule DistilleryPackager.Mixfile do
 
   def project do
     [app: :distillery_packager,
-     version: "2.0.0",
+     version: "2.0.1",
      elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -37,13 +37,13 @@ defmodule DistilleryPackager.Mixfile do
   defp deps do
     [
       {:distillery,  "~> 2.1"},
-      {:vex,         "~> 0.8"},
-      {:timex,       "~> 3.6"},
-      {:ex_doc,      "~> 0.21", only: :dev},
-      {:credo,       "~> 1.1", only: [:dev, :test], runtime: false},
+      {:vex,         "~> 0.9"},
+      {:timex,       "~> 3.7"},
+      {:ex_doc,      "~> 0.24", only: :dev},
+      {:credo,       "~> 1.5", only: [:dev, :test], runtime: false},
       {:dogma,       "~> 0.1", only: [:dev, :test], runtime: false},
-      {:faker,       "~> 0.12", only: :test},
-      {:excoveralls, "~> 0.11", only: :test},
+      {:faker,       "~> 0.16", only: :test},
+      {:excoveralls, "~> 0.14", only: :test},
     ]
   end
 
